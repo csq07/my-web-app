@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1665c0">
+<title>离线物品识别分类器</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1 data-i18n="title">离线物品识别分类器</h1>
+  <div class="hdr-right">
+    <span id="status" class="status">…</span>
+    <button id="langBtn" class="small" title="Language">EN</button>
+  </div>
+</header>
+
+<main>
+<section class="card" id="cameraCard">
+  <div class="video-wrap">
+    <video id="video" playsinline muted></video>
+    <canvas id="overlay"></canvas>
+    <div id="placeholder" class="placeholder" data-i18n="cameraOff">摄像头未开启</div>
+  </div>
+  <div class="controls">
+    <button id="startBtn" class="primary" data-i18n="start">开启摄像头</button>
+    <button id="switchBtn" data-i18n="switchCam">切换前/后摄像头</button>
+    <button id="snapBtn" data-i18n="snapshot">拍照</button>
+    <label class="btn"><span data-i18n="recognizeImage">识别图片</span><input type="file" id="recogFile" accept="image/*" hidden></label>
+  </div>
+  <div class="controls">
+    <label><span data-i18n="mode">识别模式</span>
+      <select id="modeSel">
+        <option value="imagenet" data-i18n="modeImagenet">通用分类 (MobileNet · 1000类)</option>
+        <option value="coco" data-i18n="modeCoco">目标检测 (COCO-SSD · 80类)</option>
+        <option value="custom" data-i18n="modeCustom">自定义模型 (KNN)</option>
+      </select>
+    </label>
+    <label><span data-i18n="threshold">记录阈值</span>
+      <input type="range" id="thresh" min="10" max="95" value="50"><span id="threshVal">50%</span></label>
+  </div>
+</section>
+
+<section class="card">
+  <h2 data-i18n="predictions">识别结果 (前3)</h2>
+  <ol id="preds" class="preds"></ol>
+  <div id="catVerdict" class="verdict"></div>
+  <div class="fps"><span data-i18n="speed">推理耗时</span>: <span id="ms">-</span> ms</div>
+</section>
+
+<section class="card">
+  <div class="row-between"><h2 data-i18n="categoryStats">分类统计</h2>
+    <button id="clearLogBtn" class="small" data-i18n="clear">清空</button></div>
+  <div id="catStats" class="cat-stats"></div>
+  <h3 data-i18n="log">识别记录</h3>
+  <ul id="log" class="log"></ul>
+  <button id="exportLogBtn" class="small" data-i18n="exportCsv">导出 CSV</button>
+</section>
+
+<section class="card">
+  <div class="row-between"><h2 data-i18n="snapshots">快照</h2>
+    <button id="clearSnapBtn" class="small" data-i18n="clear">清空</button></div>
+  <div id="snaps" class="snaps"></div>
+</section>
+
+<section class="card" id="trainCard">
+  <h2 data-i18n="customTraining">自定义训练</h2>
+  <p class="hint" data-i18n="trainHint">添加你自己的类别，用摄像头采集或批量上传大量图片作为样本，在本机用 MobileNet 特征 + KNN 训练，无需联网。</p>
+  <div class="controls">
+    <input id="newClassName" data-i18n-ph="classNamePh" placeholder="类别名称，例如：我的水杯">
+    <select id="newClassCat"></select>
+    <button id="addClassBtn" class="primary" data-i18n="addClass">添加类别</button>
+  </div>
+  <div class="controls">
+    <label class="btn"><span data-i18n="importFolder">导入文件夹 (子文件夹=类别)</span><input type="file" id="folderInput" webkitdirectory multiple hidden></label>
+    <label><span>K</span> <input type="number" id="kVal" min="1" max="50" value="5" style="width:4em"></label>
+  </div>
+  <div id="progress" class="progress hidden"><div id="progressBar"></div><span id="progressText"></span></div>
+  <div id="classes" class="classes"></div>
+  <div class="controls">
+    <button id="saveModelBtn" data-i18n="saveModel">保存到本机</button>
+    <button id="loadModelBtn" data-i18n="loadModel">从本机加载</button>
+    <button id="exportModelBtn" data-i18n="exportModel">导出 JSON</button>
+    <label class="btn"><span data-i18n="importModel">导入 JSON</span><input type="file" id="importModel" accept=".json,application/json" hidden></label>
+    <button id="resetModelBtn" class="danger" data-i18n="resetModel">清空模型</button>
+  </div>
+</section>
+
+<section class="card small-print">
+  <p data-i18n="footer">所有识别都在本机完成，图像不会上传。首次打开后可完全离线使用。</p>
+</section>
+</main>
+
+<div id="toast" class="toast"></div>
+
+<script src="lib/tf.min.js"></script>
+<script src="lib/mobilenet.min.js"></script>
+<script src="lib/knn-classifier.min.js"></script>
+<script src="lib/coco-ssd.min.js"></script>
+<script src="labels.js"></script>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
