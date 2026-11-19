@@ -1,0 +1,45 @@
+// UI strings (zh = Simplified Chinese, en = English)
+window.I18N = {
+  zh: {
+    title: '离线物品识别分类器', cameraOff: '摄像头未开启', start: '开启摄像头', stop: '关闭摄像头',
+    switchCam: '切换前/后摄像头', snapshot: '拍照', recognizeImage: '识别图片', mode: '识别模式',
+    modeImagenet: '通用分类 (MobileNet · 1000类)', modeCoco: '目标检测 (COCO-SSD · 80类)', modeCustom: '自定义模型 (KNN)',
+    threshold: '记录阈值', predictions: '识别结果 (前3)', speed: '推理耗时', categoryStats: '分类统计', clear: '清空',
+    log: '识别记录', exportCsv: '导出 CSV', snapshots: '快照', customTraining: '自定义训练',
+    trainHint: '添加你自己的类别，用摄像头采集或批量上传大量图片作为样本，在本机用 MobileNet 特征 + KNN 训练，无需联网。',
+    classNamePh: '类别名称，例如：我的水杯', addClass: '添加类别', importFolder: '导入文件夹 (子文件夹=类别)',
+    saveModel: '保存到本机', loadModel: '从本机加载', exportModel: '导出 JSON', importModel: '导入 JSON', resetModel: '清空模型',
+    footer: '所有识别都在本机完成，图像不会上传。首次打开后可完全离线使用。',
+    holdCapture: '按住采集', burst: '连拍 30 张', upload: '上传图片', del: '删除', samples: '个样本',
+    loadingTf: '正在加载 TensorFlow.js…', loadingModel: '正在加载本地模型…', loadingCoco: '正在加载 COCO-SSD 模型…',
+    ready: '就绪', backend: '后端', noPred: '暂无结果', noClasses: '还没有自定义类别，请先添加类别并采集样本。',
+    needTwo: '自定义模型至少需要 1 个有样本的类别', cameraError: '无法打开摄像头：', cameraNeedsSecure: '摄像头需要 https 或 localhost 访问',
+    saved: '已保存到本机', loaded: '已从本机加载', nothingSaved: '本机没有保存的模型', exported: '已导出', imported: '已导入',
+    confirmReset: '确定清空所有自定义类别和样本吗？', confirmDelete: '删除该类别及其样本？', enterName: '请输入类别名称',
+    exists: '类别已存在', processing: '正在处理', done: '完成', snapSaved: '已拍照', download: '下载',
+    offlineReady: '已缓存，可离线使用', catVerdict: '大类判定', classCategory: '归入大类',
+    cat_electronics: '电子产品', cat_food: '食物', cat_animals: '动物', cat_furniture: '家具', cat_clothing: '衣物',
+    cat_vehicles: '交通工具', cat_person: '人物', cat_other: '其他', cat_custom: '自定义'
+  },
+  en: {
+    title: 'Offline Object Classifier', cameraOff: 'Camera is off', start: 'Start camera', stop: 'Stop camera',
+    switchCam: 'Switch front/back', snapshot: 'Snapshot', recognizeImage: 'Recognize image', mode: 'Mode',
+    modeImagenet: 'General (MobileNet · 1000 classes)', modeCoco: 'Detection (COCO-SSD · 80 classes)', modeCustom: 'Custom model (KNN)',
+    threshold: 'Log threshold', predictions: 'Top-3 predictions', speed: 'Inference time', categoryStats: 'Category counts', clear: 'Clear',
+    log: 'Detection log', exportCsv: 'Export CSV', snapshots: 'Snapshots', customTraining: 'Custom training',
+    trainHint: 'Add your own classes, capture samples with the camera or bulk-upload many images, and train a KNN on MobileNet features right on this device - no network needed.',
+    classNamePh: 'Class name, e.g. My mug', addClass: 'Add class', importFolder: 'Import folder (subfolder = class)',
+    saveModel: 'Save on device', loadModel: 'Load from device', exportModel: 'Export JSON', importModel: 'Import JSON', resetModel: 'Reset model',
+    footer: 'All recognition runs on this device; images are never uploaded. Works fully offline after the first load.',
+    holdCapture: 'Hold to capture', burst: 'Burst 30', upload: 'Upload images', del: 'Delete', samples: 'samples',
+    loadingTf: 'Loading TensorFlow.js…', loadingModel: 'Loading local model…', loadingCoco: 'Loading COCO-SSD model…',
+    ready: 'Ready', backend: 'backend', noPred: 'No result yet', noClasses: 'No custom classes yet. Add a class and capture samples first.',
+    needTwo: 'Custom model needs at least 1 class with samples', cameraError: 'Cannot open camera: ', cameraNeedsSecure: 'Camera requires https or localhost',
+    saved: 'Saved on device', loaded: 'Loaded from device', nothingSaved: 'No saved model on this device', exported: 'Exported', imported: 'Imported',
+    confirmReset: 'Delete all custom classes and samples?', confirmDelete: 'Delete this class and its samples?', enterName: 'Please enter a class name',
+    exists: 'Class already exists', processing: 'Processing', done: 'Done', snapSaved: 'Snapshot taken', download: 'Download',
+    offlineReady: 'Cached for offline use', catVerdict: 'Category verdict', classCategory: 'Category',
+    cat_electronics: 'Electronics', cat_food: 'Food', cat_animals: 'Animals', cat_furniture: 'Furniture', cat_clothing: 'Clothing',
+    cat_vehicles: 'Vehicles', cat_person: 'People', cat_other: 'Other', cat_custom: 'Custom'
+  }
+};
